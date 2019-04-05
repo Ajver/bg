@@ -9,6 +9,18 @@ body {
   overflow: hidden;
 }
 
+.loading-curtain {
+  position: fixed;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+}
+
+body.loaded .loading-curtain {
+  animation: fade-modal-out 4s ease-in-out .5s 1 normal forwards;
+}
+
 .anim {
   position: fixed;
   cursor: pointer;
@@ -45,18 +57,16 @@ body {
 }
 
 .anim.opened-curtains .dove {
-  animation: dove-fly 8s ease-in-out 0s 1 normal forwards;
+  animation: dove-fly 8s ease-in-out 1s 1 normal forwards;
 }
 
 .anim.opened-curtains .letter {
-  animation: fade-in 1s ease-in-out 9s 1 normal forwards;
+  animation: fade-in 1s ease-in-out 10s 1 normal forwards;
 }
 
 .dove {
   width: 20vmax;
   height: 20vmax;
-  top: 20%;
-  left: 75%;
   overflow: visible;
 }
 .dove::before {
@@ -132,5 +142,21 @@ body {
 
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes fade-modal-out {
+  0% {
+    opacity: 1;
+    z-index: 1000;
+  }
+
+  99% {
+    z-index: 1000;
+  }
+
+  100% {
+    opacity: 0;
+    z-index: -1;
   }
 }
